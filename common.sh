@@ -70,18 +70,18 @@ func_nodejs() {
 func_java () {
   func_apppreq
 
-  echo -e "\e[36m>>>>>>>>>>>>>>>>>>>>>> Install Maven  <<<<<<<<<<<<<<<<<<<<<<\e[0m"
-  dnf install maven -y
+  echo -e "\e[36m>>>>>>>>>>>>>>>>>>>>>> Install Maven  <<<<<<<<<<<<<<<<<<<<<<\e[0m" | tee -a ${log}
+  dnf install maven -y &>>${log}
 
-  echo -e "\e[36m>>>>>>>>>>>>>>>>>>>>>> Install java dependencies <<<<<<<<<<<<<<<<<<<<<<\e[0m"
-  mvn clean package
-  mv target/shipping-1.0.jar shipping.jar
+  echo -e "\e[36m>>>>>>>>>>>>>>>>>>>>>> Install java dependencies <<<<<<<<<<<<<<<<<<<<<<\e[0m" | tee -a ${log}
+  mvn clean package &>>${log}
+  mv target/shipping-1.0.jar shipping.jar &>>${log}
 
-  echo -e "\e[36m>>>>>>>>>>>>>>>>>>>>>> Install mysql client <<<<<<<<<<<<<<<<<<<<<<\e[0m"
-  dnf install mysql -y
+  echo -e "\e[36m>>>>>>>>>>>>>>>>>>>>>> Install mysql client <<<<<<<<<<<<<<<<<<<<<<\e[0m" | tee -a ${log}
+  dnf install mysql -y &>>${log}
 
-  echo -e "\e[36m>>>>>>>>>>>>>>>>>>>>>> Load Schema <<<<<<<<<<<<<<<<<<<<<<\e[0m"
-  mysql -h mysql.vinithaws.online -uroot -pRoboShop@1 < /app/schema/shipping.sql
+  echo -e "\e[36m>>>>>>>>>>>>>>>>>>>>>> Load Schema <<<<<<<<<<<<<<<<<<<<<<\e[0m" | tee -a ${log}
+  mysql -h mysql.vinithaws.online -uroot -pRoboShop@1 < /app/schema/shipping.sql &>>${log}
 
   func_systemd
 }
@@ -89,11 +89,11 @@ func_java () {
 func_python () {
   func_apppreq
 
-  echo -e "\e[36m>>>>>>>>>>>>>>>>>>>>>> Install Python Packages <<<<<<<<<<<<<<<<<<<<<<\e[0m"
-  dnf install python36 gcc python3-devel -y
+  echo -e "\e[36m>>>>>>>>>>>>>>>>>>>>>> Install Python Packages <<<<<<<<<<<<<<<<<<<<<<\e[0m" | tee -a ${log}
+  dnf install python36 gcc python3-devel -y &>>${log}
 
-  echo -e "\e[36m>>>>>>>>>>>>>>>>>>>>> Install Python Dependencies <<<<<<<<<<<<<<<<<<\e[0m"
-  pip3.6 install -r requirements.txt
+  echo -e "\e[36m>>>>>>>>>>>>>>>>>>>>> Install Python Dependencies <<<<<<<<<<<<<<<<<<\e[0m" | tee -a ${log}
+  pip3.6 install -r requirements.txt &>>${log}
 
   func_systemd
 }
