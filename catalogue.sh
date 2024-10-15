@@ -1,31 +1,47 @@
+log=/tmp/roboshop.log
 
-cp catalogue.service /etc/systemd/system/catalogue.service
+echo -e "\e[36m>>>>>>>>>>>>> Copy the Catalogue Service File <<<<<<<<<<<<<<<<<<<\e[0m" | tee -a ${log}
+cp catalogue.service /etc/systemd/system/catalogue.service &>>${log}
 
-cp mongo.repo /etc/yum.repos.d/mongo.repo
+echo -e "\e[36m>>>>>>>>>>>>> Copy the mongo repo File <<<<<<<<<<<<<<<<<<<\e[0m" | tee -a ${log}
+cp mongo.repo /etc/yum.repos.d/mongo.repo &>>${log}
 
-yum module disable nodejs -y
+echo -e "\e[36m>>>>>>>>>>>>> Disable nodejs module <<<<<<<<<<<<<<<<<<<\e[0m" | tee -a ${log}
+yum module disable nodejs -y &>>${log}
 
-yum module enable nodejs:18 -y
+echo -e "\e[36m>>>>>>>>>>>>> Enable the nodejs module <<<<<<<<<<<<<<<<<<<\e[0m" | tee -a ${log}
+yum module enable nodejs:18 -y &>>${log}
 
-yum install nodejs -y
+echo -e "\e[36m>>>>>>>>>>>>> Install Nodejs <<<<<<<<<<<<<<<<<<<\e[0m" | tee -a ${log}
+yum install nodejs -y &>>${log}
 
-useradd roboshop
+echo -e "\e[36m>>>>>>>>>>>>> Adding the Functional user <<<<<<<<<<<<<<<<<<<\e[0m" | tee -a ${log}
+useradd roboshop &>>${log}
 
-mkdir /app
+echo -e "\e[36m>>>>>>>>>>>>> Cleanup application content <<<<<<<<<<<<<<<<<<<\e[0m" | tee -a ${log}
+rm -rf /app &>>${log}
 
-curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip
+echo -e "\e[36m>>>>>>>>>>>>> Create the application directory <<<<<<<<<<<<<<<<<<<\e[0m" | tee -a ${log}
+mkdir /app &>>${log}
 
-cd /app
-unzip /tmp/catalogue.zip
+echo -e "\e[36m>>>>>>>>>>>>> Download application content <<<<<<<<<<<<<<<<<<<\e[0m" | tee -a ${log}
+curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip &>>${log}
 
-cd /app
-npm install
+echo -e "\e[36m>>>>>>>>>>>>> Extract the application content <<<<<<<<<<<<<<<<<<<\e[0m" | tee -a ${log}
+cd /app &>>${log}
+unzip /tmp/catalogue.zip &>>${log}
+cd /app &>>${log}
 
-yum install mongodb-org-shell -y
+echo -e "\e[36m>>>>>>>>>>>>> Install Dependencies <<<<<<<<<<<<<<<<<<<\e[0m" | tee -a ${log}
+npm install &>>${log}
 
-mongo --host mongodb.vinithaws.online </app/schema/catalogue.js
+echo -e "\e[36m>>>>>>>>>>>>> Install Mongo client <<<<<<<<<<<<<<<<<<<\e[0m" | tee -a ${log}
+yum install mongodb-org-shell -y &>>${log}
 
-systemctl daemon-reload
-systemctl enable catalogue
-systemctl restart catalogue
+echo -e "\e[36m>>>>>>>>>>>>> Load Schema <<<<<<<<<<<<<<<<<<<\e[0m" | tee -a ${log}
+mongo --host mongodb.vinithaws.online </app/schema/catalogue.js &>>${log}
+
+echo -e "\e[36m>>>>>>>>>>>>> Restart Service <<<<<<<<<<<<<<<<<<<\e[0m" | tee -a ${log}
+systemctl enable catalogue &>>${log}
+systemctl restart catalogue &>>${log}
 
