@@ -71,7 +71,6 @@ func_schema_setup() {
 
 
 
-
 func_nodejs() {
   log=/tmp/roboshop.log
 
