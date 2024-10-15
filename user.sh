@@ -42,6 +42,5 @@ echo -e "\e[36m>>>>>>>>>>>>>>>> Load schema <<<<<<<<<<<<<<<<<\e[0m" | tee -a ${l
 mongo --host mongodb.vinithaws.online </app/schema/user.js &>>${log}
 
 echo -e "\e[36m>>>>>>>>>>>>>>>> Restart the User service <<<<<<<<<<<<<<<<<\e[0m" | tee -a ${log}
-systemctl daemon-reload &>>${log}
 systemctl enable user &>>${log}
 systemctl restart user &>>${log}
