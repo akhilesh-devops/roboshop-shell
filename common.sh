@@ -80,7 +80,7 @@ func_nodejs() {
   func_exit_status
 
   echo -e "\e[36m>>>>>>>>>>>>  Install NodeJS Repos  <<<<<<<<<<<<\e[0m"
-  yum module disable nodejs -y ; yum module enable nodejs:18 -y
+  yum module disable nodejs -y ; yum module enable nodejs:18 -y &>>${log}
   func_exit_status
 
   echo -e "\e[36m>>>>>>>>>>>>  Install NodeJS  <<<<<<<<<<<<\e[0m"
