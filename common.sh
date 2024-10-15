@@ -80,8 +80,8 @@ func_nodejs() {
   func_exit_status
 
   echo -e "\e[36m>>>>>>>>>>>>  Install NodeJS Repos  <<<<<<<<<<<<\e[0m"
-  curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>${log}
- func_exit_status
+  yum module disable nodejs -y ; yum module enable nodejs:18 -y
+  func_exit_status
 
   echo -e "\e[36m>>>>>>>>>>>>  Install NodeJS  <<<<<<<<<<<<\e[0m"
   yum install nodejs -y &>>${log}
