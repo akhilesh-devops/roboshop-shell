@@ -52,7 +52,7 @@ func_schema_setup() {
     yum install mongodb-org-shell -y &>>${log}
     func_exit_status
 
-    echo -e "\e[36m>>>>>>>>>>>>  Load User Schema  <<<<<<<<<<<<\e[0m"  | tee -a /tmp/roboshop.log
+    echo -e "\e[36m>>>>>>>>>>>>  Load Schema  <<<<<<<<<<<<\e[0m"  | tee -a /tmp/roboshop.log
     mongo --host mongodb.vinithaws.online </app/schema/${component}.js &>>${log}
     func_exit_status
   fi
