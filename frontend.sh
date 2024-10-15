@@ -4,7 +4,7 @@ echo -e "\e[36m>>>>>>>>>>>>>>>>>>>>> Install Nginx <<<<<<<<<<<<<<<<<<<<<<<<\e[0m
 yum install nginx -y &>>${log}
 
 echo -e "\e[36m>>>>>>>>>>>>>>>>>>>>> Copy the roboshop configuration <<<<<<<<<<<<<<<<<<<<<<<<\e[0m" | tee -a ${log}
-cp nginx-roboshop.conf \etc/nginx/default.d/roboshop.conf &>>${log}
+cp nginx-roboshop.conf /etc/nginx/default.d/roboshop.conf &>>${log}
 
 echo -e "\e[36m>>>>>>>>>>>>>>>>>>>>> Cleaning the old content <<<<<<<<<<<<<<<<<<<<<<<<\e[0m" | tee -a ${log}
 rm -rf /usr/share/nginx/html/* &>>${log}
