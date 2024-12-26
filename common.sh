@@ -40,6 +40,8 @@ func_apppreq() {
 
 func_nodejs() {
 
+  func_apppreq
+
   echo -e "\e[36m>>>>>>>>>>>>  Create MongoDB Repo  <<<<<<<<<<<<\e[0m"
   cp mongo.repo /etc/yum.repos.d/mongo.repo &>>${log}
   func_exit_status
