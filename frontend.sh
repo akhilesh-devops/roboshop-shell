@@ -17,3 +17,4 @@ unzip /tmp/frontend.zip &>>${log}
 echo -e "\e[32m >>>>>>>>>>>>>>> Restart the Nginx service <<<<<<<<<<<<<<<<<<<\e[0m" | tee -a ${log}
 systemctl restart nginx &>>${log}
 systemctl enable nginx &>>${log}
+
