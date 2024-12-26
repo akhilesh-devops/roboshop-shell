@@ -1,4 +1,4 @@
-echo -e "\e[32m >>>>>>>>>>>>>>>>> Copy Roboshop configuration <<<<<<<<<<<<<<<<<<<<<<<<<<<<\e[0m"
+echo -e "\e[32m >>>>>>>>>>>>>>>>> Copy Nginx configuration <<<<<<<<<<<<<<<<<<<<<<<<<<<<\e[0m"
 cp nginx-roboshop.conf /etc/nginx/default.d/nginx-roboshop.conf
 
 echo -e "\e[32m >>>>>>>>>>>>>>>>> Install Nginx <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\e[0m"
