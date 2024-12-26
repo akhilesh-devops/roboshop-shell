@@ -1,4 +1,4 @@
-log = /tmp/roboshop.log
+log=/tmp/roboshop.log
 
 echo -e "\e[32m >>>>>>>>>>>>>>>>> Copy Nginx configuration <<<<<<<<<<<<<<<<<<<<<<<<<<<<\e[0m" | tee -a /tmp/roboshop.log
 cp nginx-roboshop.conf /etc/nginx/default.d/roboshop.conf &>>${log}
