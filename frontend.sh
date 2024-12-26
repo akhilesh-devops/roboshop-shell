@@ -22,7 +22,7 @@ unzip /tmp/frontend.zip &>>${log}
 func_exit_status
 
 echo -e "\e[36m >>>>>>>>>>>>>>> Restart the Nginx service <<<<<<<<<<<<<<<<<<<\e[0m" | tee -a /tmp/roboshop.log
-systemctl restart nginx &>>${log}
 systemctl enable nginx &>>${log}
+systemctl restart nginx &>>${log}
 func_exit_status
 
