@@ -12,7 +12,7 @@ unzip /tmp/catalogue.zip
 npm install
 
 dnf install mongodb-org-shell -y
-mongo --host MONGODB-SERVER-IPADDRESS </app/schema/catalogue.js
+mongo --host mongodb.vinithaws.online </app/schema/catalogue.js
 
 systemctl daemon-reload
 systemctl enable catalogue
