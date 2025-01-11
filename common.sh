@@ -48,9 +48,11 @@ func_nodejs() {
 
   echo -e "\e[36m >>>>>>>>>>> Disable the nodejs module <<<<<<<<<<<<<<<<<\e[0m" | tee -a ${log}
   dnf module disable nodejs -y &>>${log}
+  func_exit_status
 
   echo -e "\e[36m >>>>>>>>>>> Enable the nodejs module <<<<<<<<<<<<<<<<<<<\e[0m" | tee -a ${log}
   dnf module enable nodejs:18 -y &>>${log}
+  func_exit_status
 
   echo -e "\e[36m >>>>>>>>>>>> Install Nodejs <<<<<<<<<<<<<<<<\e[0m" | tee -a ${log}
   dnf install nodejs -y &>>${log}
