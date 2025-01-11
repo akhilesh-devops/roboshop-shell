@@ -13,8 +13,8 @@ dnf install rabbitmq-server -y &>>${log}
 func_exit_status
 
 echo -e "\e[36m >>>>>>>>>> Enable and restart the service <<<<<<<<<<<<\e[0m" | tee -a ${log}
-systemctl enable rabbitmq-server
-systemctl start rabbitmq-server
+systemctl enable rabbitmq-server &>>${log}
+systemctl start rabbitmq-server &>>${log}
 func_exit_status
 
 echo -e "\e[36m >>>>>>>>>>> Adding user <<<<<<<<<<<\e[0m" | tee -a ${log}
