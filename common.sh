@@ -64,7 +64,7 @@ func_nodejs() {
   npm install &>>${log}
   func_exit_status
 
-  func_schema
+  func_schema_setup
 
   func_systemd
 }
