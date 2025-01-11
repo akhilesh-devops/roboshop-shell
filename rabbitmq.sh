@@ -1,26 +1,13 @@
-source common.sh
+rabbitmq_app_password=$1
+if [ -z "${rabbitmq_app_password}" ]; then
+  echo Input RabbitMQ AppUser Password Missing
+  exit 1
+fi
 
-echo -e "\e[36m >>>>>>>>>> Install Erlang repos <<<<<<<<<<<<<<\e[0m" | tee -a ${log}
-curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash &>>${log}
-func_exit_status
-
-echo -e "\e[36m >>>>>>>>>>>>> Download the rabbitmq repositories <<<<<<<<<<<<<\e[0m" | tee -a ${log}
-curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash &>>${log}
-func_exit_status
-
-echo -e "\e[36m >>>>>>>>>>> Install rabbitmq-server <<<<<<<<<<<<<<<\e[0m" | tee -a ${log}
-dnf install rabbitmq-server -y &>>${log}
-func_exit_status
-
-echo -e "\e[36m >>>>>>>>>> Enable and restart the service <<<<<<<<<<<<\e[0m" | tee -a ${log}
-systemctl enable rabbitmq-server &>>${log}
-systemctl start rabbitmq-server &>>${log}
-func_exit_status
-
-echo -e "\e[36m >>>>>>>>>>> Adding user <<<<<<<<<<<\e[0m" | tee -a ${log}
-rabbitmqctl add_user roboshop roboshop123 &>>${log}
-func_exit_status
-
-echo -e "\e[36m >>>>>>>>>>> set permissions for user <<<<<<<<<<<<\e[0m" | tee -a ${log}
-rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*" &>>${log}
-func_exit_status
+curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash
+curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash
+yum install rabbitmq-server -y
+systemctl enable rabbitmq-server
+systemctl start rabbitmq-server
+rabbitmqctl add_user roboshop ${rabbitmq_app_password}
+rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"
