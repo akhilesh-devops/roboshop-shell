@@ -77,11 +77,11 @@ func_nodejs() {
   func_exit_status
 
   echo -e "\e[36m>>>>>>>>>>>>  Install NodeJS Repos  <<<<<<<<<<<<\e[0m"
-  sudo dnf module disable nodejs -y ; sudo dnf module enable nodejs:18 -y
+  dnf module disable nodejs -y &>>${log} ; dnf module enable nodejs:18 -y &>>${log}
   func_exit_status
 
   echo -e "\e[36m>>>>>>>>>>>>  Install NodeJS  <<<<<<<<<<<<\e[0m"
-  sudo yum install nodejs -y &>>${log}
+  dnf install nodejs -y &>>${log}
   func_exit_status
 
   func_apppreq
