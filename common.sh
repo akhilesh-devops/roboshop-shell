@@ -58,14 +58,14 @@ func_schema_setup() {
   fi
 
   if [ "${schema_type}" == "mysql" ]; then
-    echo -e "\e[36m>>>>>>>>>>>>  Install MySQL Client   <<<<<<<<<<<<\e[0m"
-    yum install mysql -y &>>${log}
-    func_exit_status
+      echo -e "\e[36m>>>>>>>>>>>>  Install MySQL Client   <<<<<<<<<<<<\e[0m"
+      yum install mysql -y &>>${log}
+      func_exit_status
 
-    echo -e "\e[36m>>>>>>>>>>>>  Load Schema   <<<<<<<<<<<<\e[0m"
-    mysql -h mysql-dev.vinithaws.online -uroot -pRoboShop@1 < /app/schema/${component}.sql &>>${log}
-    func_exit_status
-  fi
+      echo -e "\e[36m>>>>>>>>>>>>  Load Schema   <<<<<<<<<<<<\e[0m"
+      mysql -h mysql-dev.vinithaws.online -uroot -pRoboShop@1 < /app/schema/${component}.sql &>>${log}
+      func_exit_status
+    fi
 
 }
 
